@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Smart LPG Safety System | IoT Gas Leak Detection by Tanmay Yadav</title>
+  <meta name="description" content="An IoT-based LPG gas leak detection and automatic shut-off system using ESP32, MQ-2 sensor, servo automation, and Telegram alerts by Tanmay Yadav.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="canonical" href="https://tanmayhitech.com/lpg.html">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="css/style.css?v=51">
+
+  <!-- Scripts -->
+  <script src="js/script.js" defer></script>
+</head>
+
+<body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300 overflow-x-hidden">
+
+  <!-- Minimal Mobile Header -->
+  <header class="lg:hidden fixed top-0 left-0 right-0 bg-white/85 dark:bg-slate-950/85 backdrop-blur-xl border-b border-slate-200/40 dark:border-slate-800/40 z-[200] transition-colors duration-300">
+    <div class="flex items-center justify-between px-6 h-14">
+      <a href="index.html" class="text-[11px] font-black uppercase tracking-[0.35em] text-slate-900 dark:text-white">
+        TANMAY YADAV
+      </a>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Dark/Light Mode"></button>
+        <button id="mobile-menu-toggle" aria-label="Toggle Navigation Menu" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-[10px] font-black uppercase tracking-widest cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+          <span>MENU</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Slide-out Drawer Overlay -->
+  <div id="mobile-drawer" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-[300] flex justify-end">
+    <div id="mobile-drawer-content" class="w-4/5 max-w-sm bg-white dark:bg-slate-950 border-l border-slate-200 dark:border-slate-800 h-full p-8 flex flex-col justify-between overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between border-b border-slate-200/40 dark:border-slate-800/40 pb-6 mb-8">
+          <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-slate-400">00 / NAVIGATION</span>
+          <button id="mobile-drawer-close" aria-label="Close Menu" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 text-lg hover:text-slate-950 dark:hover:text-white cursor-pointer transition-colors">&times;</button>
+        </div>
+        <nav class="flex flex-col gap-5">
+          <a href="index.html#work" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
+            <span>01 / Work</span>
+            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </a>
+          <a href="media.html" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
+            <span>02 / Media & Press</span>
+            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </a>
+          <a href="about.html" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
+            <span>03 / About Tanmay</span>
+            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </a>
+          <a href="cubo-the-robo.html" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
+            <span>04 / Cubo the Robo</span>
+            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </a>
+          <a href="loozars.html" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
+            <span>05 / Loozars Brand</span>
+            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </a>
+          <a href="lpg.html" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
+            <span>06 / LPG Safety System</span>
+            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </a>
+          <a href="index.html#contact" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
+            <span>07 / Connect</span>
+            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </a>
+        </nav>
+      </div>
+      <div class="border-t border-slate-200/40 dark:border-slate-800/40 pt-6 mt-6">
+        <p class="text-[9px] font-mono text-slate-400 uppercase tracking-widest mb-2">DIRECT EMAIL</p>
+        <a href="mailto:tanmayhitech@gmail.com" class="text-xs font-semibold text-slate-900 dark:text-white hover:underline block mb-5">tanmayhitech@gmail.com</a>
+        <div class="flex gap-3">
+          <a href="https://share.google/uFASJ8FSPojPedL9B" target="_blank" rel="noopener noreferrer" class="text-[9px] font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white uppercase tracking-wider px-2 py-1 bg-slate-100 dark:bg-slate-900 rounded border border-slate-200 dark:border-slate-800">LinkedIn</a>
+          <a href="https://www.instagram.com/p/DX4O-o1FNcB/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="text-[9px] font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white uppercase tracking-wider px-2 py-1 bg-slate-100 dark:bg-slate-900 rounded border border-slate-200 dark:border-slate-800">Instagram</a>
+          <a href="https://github.com/tanmayhitech" target="_blank" rel="noopener noreferrer" class="text-[9px] font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white uppercase tracking-wider px-2 py-1 bg-slate-100 dark:bg-slate-900 rounded border border-slate-200 dark:border-slate-800">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="pt-16 lg:pt-0 lg:pl-20">
+    <div class="max-w-screen-xl mx-auto px-8 md:px-16 lg:px-24">
+
+      <!-- Vertical Sidebar -->
+      <aside class="hidden lg:flex fixed left-0 top-0 h-full w-20 border-r border-slate-200/40 dark:border-slate-800/40 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl flex-col items-center justify-between py-12 z-[100] transition-colors duration-300">
+        <div class="rail-text font-black tracking-[0.4em] text-[10px] uppercase text-slate-900 dark:text-white">
+          TANMAY YADAV
+        </div>
+
+        <nav class="flex flex-col gap-12 rail-text items-center">
+          <a href="index.html#work" class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors duration-300">Work</a>
+          <a href="media.html" class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors duration-300">Media</a>
+          <a href="index.html#contact" class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors duration-300">Connect</a>
+        </nav>
+
+        <div class="flex flex-col items-center gap-6">
+          <button class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Dark/Light Mode"></button>
+          <div class="w-px h-16 bg-slate-200 dark:bg-slate-800"></div>
+          <span class="text-[8px] uppercase tracking-[0.35em] text-slate-400 font-bold rotate-180 [writing-mode:vertical-rl]">Documenting The Future</span>
+        </div>
+      </aside>
+
+      <!-- HERO -->
+      <section class="min-h-[70vh] flex flex-col justify-center py-20 reveal">
+        <span class="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-500 mb-6">
+          IoT Safety System · 2026
+        </span>
+
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8">
+          Smart LPG <br />
+          Safety System
+        </h1>
+
+        <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-3xl">
+          An intelligent gas leak detection and automatic shut-off system
+          designed to prevent domestic accidents using IoT automation,
+          real-time monitoring, and Telegram-based emergency alerts.
+        </p>
+      </section>
+
+      <!-- IMAGE HERO -->
+      <section class="my-16 reveal">
+        <div class="aspect-video bg-slate-100 dark:bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
+          <img src="assets/images/LPG.png"
+               alt="ESP32 LPG gas detection system prototype"
+               class="w-full h-full object-cover">
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section class="mb-32 reveal">
+        <h2 class="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-500 mb-6">
+          The Problem
+        </h2>
+        <p class="text-xl md:text-2xl text-slate-700 dark:text-slate-300 max-w-3xl font-light leading-relaxed">
+          LPG leakage remains one of the leading causes of domestic fires, explosions, and accidental hazards. Traditional safety methods rely heavily on human awareness, which delays response during emergencies.
+        </p>
+      </section>
+
+      <!-- SOLUTION -->
+      <section class="mb-32 reveal">
+        <h2 class="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-500 mb-6">
+          The Solution
+        </h2>
+        <p class="text-xl md:text-2xl text-slate-700 dark:text-slate-300 max-w-3xl font-light leading-relaxed">
+          This system continuously monitors gas concentration using the MQ-2 sensor. Once dangerous levels are detected, the system instantly activates warning alarms, shuts off the gas supply automatically using a servo mechanism, and sends emergency alerts through Telegram.
+        </p>
+      </section>
+
+      <!-- REAL WORLD -->
+      <section class="mb-32 reveal">
+        <h2 class="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-500 mb-6">
+          Real-World Scenario
+        </h2>
+        <p class="text-xl md:text-2xl text-slate-700 dark:text-slate-300 max-w-3xl font-light leading-relaxed">
+          A family leaves the kitchen unknowingly after a minor LPG leakage. Within seconds, the system detects abnormal gas levels, triggers the buzzer alarm, automatically rotates the servo to close the gas valve, and instantly notifies the owner on Telegram before the situation escalates.
+        </p>
+      </section>
+
+      <!-- FEATURES -->
+      <section class="mb-32 reveal">
+        <h2 class="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-500 mb-8">
+          Core Features
+        </h2>
+        <ul class="space-y-3 text-lg text-slate-700 dark:text-slate-300 font-light max-w-2xl">
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+            Real-time LPG gas detection
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+            ESP32 Wi-Fi connectivity
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+            Telegram emergency alerts
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+            Automatic gas shut-off servo system
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+            Red & green status indicators
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+            Buzzer-based danger warning
+          </li>
+        </ul>
+      </section>
+
+      <!-- ROADMAP -->
+      <section class="mb-40 reveal">
+        <h2 class="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-500 mb-8">
+          Future Roadmap
+        </h2>
+        <ul class="space-y-3 text-lg text-slate-700 dark:text-slate-300 font-light max-w-2xl">
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+            AI-based gas concentration analysis
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+            Mobile application dashboard
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+            Cloud-based incident logging
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+            Battery backup & exhaust fan automation
+          </li>
+        </ul>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="py-12 border-t border-slate-200/40 dark:border-slate-800/40 flex items-center justify-between">
+        <a href="loozars.html"
+           class="text-[10px] font-black uppercase tracking-[0.3em] border-b-2 border-slate-900 dark:border-white text-slate-900 dark:text-white pb-1 hover:opacity-75 transition-opacity">
+          ← Previous: Loozars Brand
+        </a>
+        <a href="media.html"
+           class="text-[10px] font-black uppercase tracking-[0.3em] border-b-2 border-slate-900 dark:border-white text-slate-900 dark:text-white pb-1 hover:opacity-75 transition-opacity">
+          Next: Media & Press →
+        </a>
+      </footer>
+
+    </div>
+  </main>
+</body>
+</html>
