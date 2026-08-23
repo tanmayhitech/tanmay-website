@@ -345,8 +345,30 @@ function initCyberTerminal() {
   });
 }
 
+/* 7. Text Click & Interaction Telemetry Tracker */
+function initTextClickTracker() {
+  document.addEventListener('mouseup', () => {
+    const selection = window.getSelection().toString().trim();
+    if (selection.length > 2) {
+      if (window.gtag) {
+        window.gtag('event', 'text_selection', { selected_text: selection });
+      }
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const targetText = e.target.innerText || e.target.textContent;
+    if (targetText && targetText.trim().length > 0 && targetText.trim().length < 60) {
+      if (window.gtag) {
+        window.gtag('event', 'element_click', { clicked_text: targetText.trim() });
+      }
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   init3DTiltCards();
   initLiveClock();
   initCyberTerminal();
+  initTextClickTracker();
 });
