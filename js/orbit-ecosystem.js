@@ -122,13 +122,13 @@ function initSolarSystem() {
       </a>
     </div>
 
-    <div class="solar-wrapper relative w-full max-w-5xl aspect-[4/3] sm:aspect-[4/3] md:aspect-[16/10] min-h-[260px] sm:min-h-[480px] mx-auto flex items-center justify-center overflow-visible py-2 select-none">
+    <div class="solar-wrapper relative w-full max-w-5xl aspect-[4/3] sm:aspect-[4/3] md:aspect-[16/10] min-h-[320px] sm:min-h-[480px] mx-auto flex items-center justify-center overflow-visible py-4 select-none">
       
       <!-- Starry Dust Ambient Effect -->
       <div class="solar-stars absolute inset-0 opacity-30 pointer-events-none"></div>
 
       <!-- Main Dynamic Responsive Viewport -->
-      <div id="solar-viewport" class="relative w-full h-full max-w-[850px] max-h-[500px] min-h-[240px] sm:min-h-[380px] flex items-center justify-center">
+      <div id="solar-viewport" class="relative w-full h-full max-w-[850px] max-h-[500px] min-h-[300px] sm:min-h-[380px] flex items-center justify-center">
         
         <!-- SVG Layer for Dynamic Elliptical Orbit Rings -->
         <svg id="solar-svg-layer" class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
