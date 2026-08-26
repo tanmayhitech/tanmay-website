@@ -4,10 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>About Tanmay Yadav (Tanmay Hitech) | Student Innovator & Builder</title>
-  <meta name="description" content="About Tanmay Yadav aka Tanmay Hitech — BCA student at Allenhouse Business School, innovator behind Cubo the Robo and founder of Loozars.">
-  <link rel="canonical" href="https://tanmayhitech.com/about.html">
+  <title>About Tanmay Yadav — Tanmay Hitech</title>
+  <meta name="description" content="Learn about Tanmay Yadav, also known online as Tanmay Hitech — BCA student at Allenhouse Business School, developer behind Cubo the Robo and founder of Loozars." />
+  <meta name="author" content="Tanmay Yadav" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tanmayyadav.in/about.html">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Tanmay Yadav" />
+  <meta property="og:title" content="About Tanmay Yadav — Tanmay Hitech" />
+  <meta property="og:description" content="Tanmay Yadav (Tanmay Hitech) — Computer Applications student, robotics developer, and entrepreneur based in Kanpur." />
+  <meta property="og:url" content="https://tanmayyadav.in/about.html" />
+  <meta property="og:image" content="https://tanmayyadav.in/assets/images/tanmay-yadav-profile.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About Tanmay Yadav — Tanmay Hitech" />
+  <meta name="twitter:description" content="Tanmay Yadav, also known online as Tanmay Hitech — Student innovator, developer, and builder." />
+  <meta name="twitter:image" content="https://tanmayyadav.in/assets/images/tanmay-yadav-profile.jpg" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,32 +39,52 @@
   </script>
 
   <!-- Core CSS -->
-  <link rel="stylesheet" href="css/style.css?v=48">
+  <link rel="stylesheet" href="css/style.css?v=53">
 
   <!-- Scripts -->
   <script src="js/sound-engine.js" defer></script>
   <script src="js/script.js" defer></script>
 
-  <!-- Structured Data -->
+  <!-- Structured Data: ProfilePage & Person Entity -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Tanmay Yadav",
-    "alternateName": "Tanmay Hitech",
-    "jobTitle": "Student Innovator",
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Allenhouse Business School, Kanpur"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "@id": "https://tanmayyadav.in/about.html#profilepage",
+      "url": "https://tanmayyadav.in/about.html",
+      "name": "About Tanmay Yadav — Tanmay Hitech",
+      "mainEntity": {
+        "@id": "https://tanmayyadav.in/#person"
+      }
     },
-    "knowsAbout": [
-      "Robotics",
-      "Hardware Innovation",
-      "Entrepreneurship",
-      "Product Design"
-    ],
-    "url": "https://tanmayhitech.com/about.html" 
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "https://tanmayyadav.in/#person",
+      "name": "Tanmay Yadav",
+      "alternateName": "Tanmay Hitech",
+      "url": "https://tanmayyadav.in/",
+      "image": "https://tanmayyadav.in/assets/images/tanmay-yadav-profile.jpg",
+      "description": "Tanmay Yadav, also known online as Tanmay Hitech, is a Computer Applications student at Allenhouse Business School, developer, and technology enthusiast.",
+      "jobTitle": "Student Innovator & Developer",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Allenhouse Business School, Kanpur"
+      },
+      "knowsAbout": [
+        "Robotics",
+        "Hardware Innovation",
+        "Entrepreneurship",
+        "Product Design"
+      ],
+      "sameAs": [
+        "https://share.google/uFASJ8FSPojPedL9B",
+        "https://github.com/tanmayhitech",
+        "https://www.instagram.com/p/DX4O-o1FNcB/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+      ]
+    }
+  ]
   </script>
 </head>
 
@@ -167,7 +203,7 @@
         <!-- Image -->
         <div class="lg:col-span-4">
           <div class="aspect-[3/4] bg-slate-100 overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
-            <img src="assets/images/tanmay-yadav-portrait.jpg.jpeg" alt="Tanmay Yadav portrait" class="w-full h-full object-cover">
+            <img src="assets/images/tanmay-yadav-profile.jpg" alt="Tanmay Yadav (Tanmay Hitech) profile portrait" class="w-full h-full object-cover">
           </div>
         </div>
 
