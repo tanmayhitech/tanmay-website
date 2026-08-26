@@ -1,37 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://tanmayyadav.in/</loc>
+    <loc>https://tanmayyadav.netlify.app/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://tanmayyadav.netlify.app/assets/images/tanmay-yadav-profile.jpg</image:loc>
+      <image:title>Tanmay Yadav (Tanmay Hitech) Profile Portrait</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://tanmayyadav.in/about.html</loc>
+    <loc>https://tanmayyadav.netlify.app/about.html</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://tanmayyadav.netlify.app/assets/images/tanmay-yadav-profile.jpg</image:loc>
+      <image:title>Tanmay Yadav Portrait</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://tanmayyadav.in/cubo-the-robo.html</loc>
+    <loc>https://tanmayyadav.netlify.app/gallery.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://tanmayyadav.netlify.app/assets/images/tanmay-yadav-profile.jpg</image:loc>
+      <image:title>Tanmay Yadav Developer Portrait</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tanmayyadav.netlify.app/assets/images/msme-idea-hackathon-award.png</image:loc>
+      <image:title>MSME Idea Hackathon 5.0 Award</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tanmayyadav.netlify.app/assets/images/techexpo-2025-award.jpeg</image:loc>
+      <image:title>TechExpo 2025 First Prize Award</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tanmayyadav.netlify.app/assets/images/tie-u-business-pitch.jpeg</image:loc>
+      <image:title>TiE U Business Pitch Showcase</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://tanmayyadav.netlify.app/cubo-the-robo.html</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://tanmayyadav.netlify.app/assets/images/cubo-prototype.jpeg</image:loc>
+      <image:title>Cubo the Robo Hardware Prototype</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://tanmayyadav.in/loozars.html</loc>
+    <loc>https://tanmayyadav.netlify.app/loozars.html</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://tanmayyadav.netlify.app/assets/images/loozars-drop.jpeg</image:loc>
+      <image:title>Loozars Streetwear Collection</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://tanmayyadav.in/lpg.html</loc>
+    <loc>https://tanmayyadav.netlify.app/lpg.html</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://tanmayyadav.netlify.app/assets/images/smart-lpg-safety-system.png</image:loc>
+      <image:title>Smart LPG Safety System Hardware</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://tanmayyadav.in/media.html</loc>
+    <loc>https://tanmayyadav.netlify.app/media.html</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
