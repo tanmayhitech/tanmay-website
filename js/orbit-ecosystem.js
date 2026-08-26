@@ -125,15 +125,21 @@ function initSolarSystem() {
     <div class="solar-wrapper relative w-full max-w-5xl aspect-[4/3] sm:aspect-[4/3] md:aspect-[16/10] min-h-[320px] sm:min-h-[480px] mx-auto flex items-center justify-center overflow-visible py-4 select-none">
       
       <!-- Minimal Right-Side Orbit Control Pill -->
-      <div id="orbit-controls" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-1.5 p-1 sm:p-1.5 rounded-full bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-xl border border-slate-700/60 dark:border-slate-800/60 shadow-xl text-white">
+      <div id="orbit-controls" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-xl border border-slate-700/60 dark:border-slate-800/60 shadow-xl text-white">
         <button id="orbit-ctrl-pause" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-900 text-slate-300 hover:text-white transition-colors cursor-pointer" title="Pause / Resume Orbit" aria-label="Pause / Resume Orbit">
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
         </button>
-        <button id="orbit-ctrl-speed-1" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-900 text-[9px] sm:text-[10px] font-mono font-bold transition-colors cursor-pointer text-emerald-400 border border-emerald-500/40" title="Normal Speed (1x)" aria-label="Normal Speed">
+        <button id="orbit-ctrl-speed-1" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-900 text-[9px] sm:text-[10px] font-mono font-bold transition-colors cursor-pointer text-emerald-400 border border-emerald-500/40" title="1x Speed">
           1x
         </button>
-        <button id="orbit-ctrl-speed-2" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-900 text-[9px] sm:text-[10px] font-mono font-bold transition-colors cursor-pointer text-slate-400" title="Turbo Speed (2x)" aria-label="Turbo Speed">
+        <button id="orbit-ctrl-speed-2" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-900 text-[9px] sm:text-[10px] font-mono font-bold transition-colors cursor-pointer text-slate-400" title="2x Speed">
           2x
+        </button>
+        <button id="orbit-ctrl-speed-3" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-900 text-[9px] sm:text-[10px] font-mono font-bold transition-colors cursor-pointer text-slate-400" title="3x Speed">
+          3x
+        </button>
+        <button id="orbit-ctrl-speed-4" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-900 text-[9px] sm:text-[10px] font-mono font-bold transition-colors cursor-pointer text-slate-400" title="4x Speed">
+          4x
         </button>
       </div>
 
@@ -321,6 +327,24 @@ function initSolarSystem() {
   const ctrlSpeed1 = document.getElementById('orbit-ctrl-speed-1');
   const ctrlSpeed2 = document.getElementById('orbit-ctrl-speed-2');
 
+  const ctrlSpeed3 = document.getElementById('orbit-ctrl-speed-3');
+  const ctrlSpeed4 = document.getElementById('orbit-ctrl-speed-4');
+
+  function setOrbitSpeed(mult, activeBtn) {
+    speedMultiplier = mult;
+    [ctrlSpeed1, ctrlSpeed2, ctrlSpeed3, ctrlSpeed4].forEach(btn => {
+      if (!btn) return;
+      if (btn === activeBtn) {
+        btn.classList.add('text-emerald-400', 'border', 'border-emerald-500/40');
+        btn.classList.remove('text-slate-400');
+      } else {
+        btn.classList.remove('text-emerald-400', 'border', 'border-emerald-500/40');
+        btn.classList.add('text-slate-400');
+      }
+    });
+    if (window.soundEngine) window.soundEngine.playChime(450 + mult * 100, 900 + mult * 100, 0.1);
+  }
+
   if (ctrlPause) {
     ctrlPause.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -332,29 +356,58 @@ function initSolarSystem() {
     });
   }
 
-  if (ctrlSpeed1) {
-    ctrlSpeed1.addEventListener('click', (e) => {
-      e.stopPropagation();
-      speedMultiplier = 1;
-      ctrlSpeed1.classList.add('text-emerald-400', 'border', 'border-emerald-500/40');
-      ctrlSpeed1.classList.remove('text-slate-400');
-      ctrlSpeed2.classList.remove('text-emerald-400', 'border', 'border-emerald-500/40');
-      ctrlSpeed2.classList.add('text-slate-400');
-      if (window.soundEngine) window.soundEngine.playChime(500, 900, 0.1);
-    });
-  }
+  if (ctrlSpeed1) ctrlSpeed1.addEventListener('click', (e) => { e.stopPropagation(); setOrbitSpeed(1, ctrlSpeed1); });
+  if (ctrlSpeed2) ctrlSpeed2.addEventListener('click', (e) => { e.stopPropagation(); setOrbitSpeed(2, ctrlSpeed2); });
+  if (ctrlSpeed3) ctrlSpeed3.addEventListener('click', (e) => { e.stopPropagation(); setOrbitSpeed(3.5, ctrlSpeed3); });
+  if (ctrlSpeed4) ctrlSpeed4.addEventListener('click', (e) => { e.stopPropagation(); setOrbitSpeed(5, ctrlSpeed4); });
 
-  if (ctrlSpeed2) {
-    ctrlSpeed2.addEventListener('click', (e) => {
+  // Direct Drag & Drop Planet Nodes to any Coordinate Angle on Orbit
+  planetData.forEach((planet, idx) => {
+    const nodeEl = document.getElementById(`planet-node-${planet.id}`);
+    if (!nodeEl) return;
+
+    let isNodeDragging = false;
+
+    const startNodeDrag = (e) => {
       e.stopPropagation();
-      speedMultiplier = 2.5;
-      ctrlSpeed2.classList.add('text-emerald-400', 'border', 'border-emerald-500/40');
-      ctrlSpeed2.classList.remove('text-slate-400');
-      ctrlSpeed1.classList.remove('text-emerald-400', 'border', 'border-emerald-500/40');
-      ctrlSpeed1.classList.add('text-slate-400');
-      if (window.soundEngine) window.soundEngine.playChime(700, 1200, 0.1);
+      isNodeDragging = true;
+      nodeEl.classList.add('scale-125', 'ring-4', 'ring-emerald-400');
+    };
+
+    const moveNodeDrag = (clientX, clientY) => {
+      if (!isNodeDragging || !viewport) return;
+      const rect = viewport.getBoundingClientRect();
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const relX = clientX - rect.left - centerX;
+      const relY = clientY - rect.top - centerY;
+      // Calculate exact angle to mouse/finger position
+      planetAngles[idx] = Math.atan2(relY, relX);
+    };
+
+    const stopNodeDrag = () => {
+      if (isNodeDragging) {
+        isNodeDragging = false;
+        nodeEl.classList.remove('scale-125', 'ring-4', 'ring-emerald-400');
+      }
+    };
+
+    nodeEl.addEventListener('mousedown', startNodeDrag);
+    window.addEventListener('mousemove', (e) => {
+      if (isNodeDragging) moveNodeDrag(e.clientX, e.clientY);
     });
-  }
+    window.addEventListener('mouseup', stopNodeDrag);
+
+    nodeEl.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) startNodeDrag(e);
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (isNodeDragging && e.touches.length === 1) moveNodeDrag(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+
+    window.addEventListener('touchend', stopNodeDrag);
+  });
 
   // Interactive Drag / Touch Swipe Gesture Control to Manually Rotate Planets
   const solarWrapper = container.querySelector('.solar-wrapper');
