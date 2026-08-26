@@ -345,24 +345,46 @@ function initCyberTerminal() {
   });
 }
 
-/* 7. Text Click & Interaction Telemetry Tracker */
-function initTextClickTracker() {
-  document.addEventListener('mouseup', () => {
-    const selection = window.getSelection().toString().trim();
-    if (selection.length > 2) {
-      if (window.gtag) {
-        window.gtag('event', 'text_selection', { selected_text: selection });
-      }
-    }
-  });
+/* 8. Glowing Magnetic Custom Cursor Follower */
+function initCustomCursor() {
+  if (window.innerWidth < 1024 || 'ontouchstart' in window) return;
 
-  document.addEventListener('click', (e) => {
-    const targetText = e.target.innerText || e.target.textContent;
-    if (targetText && targetText.trim().length > 0 && targetText.trim().length < 60) {
-      if (window.gtag) {
-        window.gtag('event', 'element_click', { clicked_text: targetText.trim() });
-      }
-    }
+  const cursorDot = document.createElement('div');
+  cursorDot.id = 'custom-cursor-dot';
+  const cursorRing = document.createElement('div');
+  cursorRing.id = 'custom-cursor-ring';
+
+  document.body.appendChild(cursorDot);
+  document.body.appendChild(cursorRing);
+
+  let mouseX = -100, mouseY = -100;
+  let ringX = -100, ringY = -100;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+  }, { passive: true });
+
+  function renderRing() {
+    ringX += (mouseX - ringX) * 0.18;
+    ringY += (mouseY - ringY) * 0.18;
+    cursorRing.style.transform = `translate3d(${ringX - 16}px, ${ringY - 16}px, 0)`;
+    requestAnimationFrame(renderRing);
+  }
+  requestAnimationFrame(renderRing);
+
+  // Hover expansion on interactive elements
+  const interactives = document.querySelectorAll('a, button, input, textarea, .media-card, .theme-toggle-btn');
+  interactives.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursorRing.classList.add('hovered');
+      cursorDot.classList.add('hovered');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursorRing.classList.remove('hovered');
+      cursorDot.classList.remove('hovered');
+    });
   });
 }
 
@@ -371,4 +393,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initLiveClock();
   initCyberTerminal();
   initTextClickTracker();
+  initCustomCursor();
 });
