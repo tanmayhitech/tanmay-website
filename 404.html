@@ -38,124 +38,63 @@
   <script src="js/script.js" defer></script>
 </head>
 
-<body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300 min-h-screen flex flex-col justify-between overflow-x-hidden">
+<body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300 min-h-screen flex flex-col justify-between items-center text-center overflow-x-hidden p-6 sm:p-12">
 
-  <!-- Minimal Mobile Navigation -->
-  <header class="lg:hidden fixed top-0 left-0 right-0 bg-white/85 dark:bg-slate-950/85 backdrop-blur-xl border-b border-slate-200/40 dark:border-slate-800/40 z-[200] transition-colors duration-300">
-    <div class="flex items-center justify-between px-6 h-14">
-      <a href="index.html" class="text-[11px] font-black uppercase tracking-[0.35em] text-slate-900 dark:text-white">
-        TANMAY YADAV
-      </a>
-      <div class="flex items-center gap-3">
-        <button class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Dark/Light Mode"></button>
-        <button id="mobile-menu-toggle" aria-label="Toggle Navigation Menu" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-[10px] font-black uppercase tracking-widest cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
-          <span>MENU</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
-          </svg>
-        </button>
-      </div>
-    </div>
+  <!-- Top Minimal Brand & Theme Toggle Bar -->
+  <header class="w-full max-w-screen-xl flex items-center justify-between py-6">
+    <a href="index.html" class="text-[11px] font-black uppercase tracking-[0.35em] text-slate-900 dark:text-white flex items-center gap-2 hover:opacity-80 transition-opacity">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
+      TANMAY YADAV
+    </a>
+    <button class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Dark/Light Mode"></button>
   </header>
 
-  <!-- Mobile Slide-out Drawer Overlay -->
-  <div id="mobile-drawer" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-[300] flex justify-end">
-    <div id="mobile-drawer-content" class="w-4/5 max-w-sm bg-white dark:bg-slate-950 border-l border-slate-200 dark:border-slate-800 h-full p-8 flex flex-col justify-between overflow-y-auto">
-      <div>
-        <div class="flex items-center justify-between border-b border-slate-200/40 dark:border-slate-800/40 pb-6 mb-8">
-          <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-slate-400">00 / NAVIGATION</span>
-          <button id="mobile-drawer-close" aria-label="Close Menu" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 text-lg hover:text-slate-950 dark:hover:text-white cursor-pointer transition-colors">&times;</button>
-        </div>
-        <nav class="flex flex-col gap-5">
-          <a href="index.html#work" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
-            <span>01 / Work</span>
-            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </a>
-          <a href="gallery.html" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
-            <span>02 / Photo Gallery</span>
-            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </a>
-          <a href="media.html" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
-            <span>03 / Media & Press</span>
-            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </a>
-          <a href="about.html" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
-            <span>04 / About Tanmay</span>
-            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </a>
-          <a href="index.html#contact" class="group flex items-center justify-between text-base font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-colors">
-            <span>05 / Connect</span>
-            <span class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-          </a>
-        </nav>
-      </div>
-    </div>
-  </div>
+  <!-- Main Centered Content -->
+  <main class="w-full max-w-4xl my-auto py-12 flex flex-col items-center justify-center">
+    
+    <!-- Monospaced Error Tag -->
+    <span class="text-[11px] font-mono font-bold uppercase tracking-[0.45em] text-slate-400 dark:text-slate-500 mb-4 block">
+      ERR // 404
+    </span>
 
-  <!-- Vertical Sidebar -->
-  <aside class="hidden lg:flex fixed left-0 top-0 h-full w-20 border-r border-slate-200 bg-white flex-col items-center justify-between py-12 z-[100]">
-    <div class="rail-text font-black tracking-[0.4em] text-[10px] uppercase text-slate-900 dark:text-white flex items-center gap-2">
-      <a href="index.html" class="hover:opacity-80 transition-opacity flex items-center gap-2" title="Return to Homepage">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
-        TANMAY YADAV
+    <!-- Massive 404 Number -->
+    <h1 class="text-8xl sm:text-[13rem] lg:text-[17rem] font-black tracking-tighter leading-none text-slate-900 dark:text-white select-none shimmer-title mb-2">
+      404
+    </h1>
+
+    <!-- Page Not Found Subtitle -->
+    <h2 class="font-serif italic text-2xl sm:text-4xl text-slate-500 dark:text-slate-400 font-normal tracking-normal mb-6">
+      Page Not Found
+    </h2>
+
+    <!-- Friendly Short Description -->
+    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-light max-w-lg leading-relaxed mb-10">
+      The requested page could not be found or may have been moved. Let's get you back on track.
+    </p>
+
+    <!-- Centered Navigation Buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+      <a href="index.html" class="px-7 py-3.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-black uppercase tracking-[0.2em] hover:opacity-90 transition-opacity shadow-lg">
+        Home →
+      </a>
+      <a href="index.html#work" class="px-6 py-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 text-slate-900 dark:text-white text-xs font-black uppercase tracking-[0.2em] hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+        Projects
+      </a>
+      <a href="gallery.html" class="px-6 py-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 text-slate-900 dark:text-white text-xs font-black uppercase tracking-[0.2em] hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+        Gallery
+      </a>
+      <a href="index.html#contact" class="px-6 py-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 text-slate-900 dark:text-white text-xs font-black uppercase tracking-[0.2em] hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+        Contact
       </a>
     </div>
 
-    <nav class="flex flex-col gap-12 rail-text items-center">
-      <a href="index.html#work" class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-700 hover:text-slate-950 transition-colors duration-300">Work</a>
-      <a href="media.html" class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-700 hover:text-slate-950 transition-colors duration-300">Media</a>
-      <a href="index.html#contact" class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-700 hover:text-slate-950 transition-colors duration-300">Connect</a>
-    </nav>
-
-    <div class="flex flex-col items-center gap-6">
-      <button class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Dark/Light Mode"></button>
-      <div class="w-px h-16 bg-slate-900"></div>
-      <span class="text-[8px] uppercase tracking-[0.35em] text-slate-400 font-bold rotate-180 [writing-mode:vertical-rl]">Page Not Found</span>
-    </div>
-  </aside>
-
-  <!-- Main Content -->
-  <main class="pt-24 lg:pt-0 lg:pl-20 flex-1 flex flex-col justify-center">
-    <div class="max-w-screen-xl mx-auto px-8 md:px-16 lg:px-24 w-full py-16">
-      
-      <div class="max-w-2xl">
-        <span class="text-[11px] font-mono font-bold uppercase tracking-[0.45em] text-slate-400 dark:text-slate-500 block mb-6">
-          ERR // 404
-        </span>
-
-        <h1 class="text-6xl sm:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.95] mb-6">
-          404 — <br>
-          <span class="font-serif italic text-slate-500 dark:text-slate-400 font-normal text-[0.45em]">Page Not Found</span>
-        </h1>
-
-        <p class="text-base sm:text-xl text-slate-600 dark:text-slate-300 font-light leading-relaxed mb-12">
-          The requested page could not be found or may have been moved. You can navigate back using the links below.
-        </p>
-
-        <!-- Navigation Buttons -->
-        <div class="flex flex-wrap gap-4">
-          <a href="index.html" class="px-6 py-3.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-black uppercase tracking-[0.2em] hover:opacity-90 transition-opacity shadow-md">
-            Home →
-          </a>
-          <a href="index.html#work" class="px-6 py-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs font-black uppercase tracking-[0.2em] hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
-            Projects
-          </a>
-          <a href="gallery.html" class="px-6 py-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs font-black uppercase tracking-[0.2em] hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
-            Gallery
-          </a>
-          <a href="index.html#contact" class="px-6 py-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs font-black uppercase tracking-[0.2em] hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
-            Contact
-          </a>
-        </div>
-      </div>
-
-    </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="lg:pl-20 border-t border-slate-200/40 dark:border-slate-800/40 py-6">
-    <div class="max-w-screen-xl mx-auto px-8 md:px-16 lg:px-24 flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.3em] text-slate-400">
+  <!-- Centered Footer -->
+  <footer class="w-full max-w-screen-xl border-t border-slate-200/30 dark:border-slate-800/30 py-6">
+    <div class="flex items-center justify-center gap-4 text-[10px] font-mono uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500">
       <span>TANMAY YADAV PORTFOLIO</span>
+      <span>·</span>
       <span>STATUS: 404</span>
     </div>
   </footer>
