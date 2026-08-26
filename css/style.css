@@ -211,21 +211,21 @@ html.dark .theme-toggle-btn:hover {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Scroll Progress Bar (Exact Sidebar Kinetic Beam Match) */
+/* Scroll Progress Bar (Classic Solid Grey Line) */
 #scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
-  height: 2.5px;
-  background: #0f172a;
+  height: 3px;
+  background: #475569;
   width: 0%;
   z-index: 9999;
   transition: width 0.1s ease-out;
 }
 
 html.dark #scroll-progress {
-  background: #38bdf8;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  background: #cbd5e1;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
 /* Rail Text / Sidebar Logic */
