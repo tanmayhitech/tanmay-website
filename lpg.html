@@ -43,6 +43,34 @@
 
   <!-- Scripts -->
   <script src="js/script.js" defer></script>
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://tanmayyadav.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Projects",
+        "item": "https://tanmayyadav.in/#work"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Smart LPG Safety System",
+        "item": "https://tanmayyadav.in/lpg.html"
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300 overflow-x-hidden">
@@ -226,6 +254,19 @@
             Buzzer-based danger warning
           </li>
         </ul>
+      </section>
+
+      <!-- RECOGNITION & ACHIEVEMENTS -->
+      <section class="mb-32 reveal">
+        <h2 class="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-500 mb-6">
+          Recognition & Innovation Award
+        </h2>
+        <p class="text-lg text-slate-700 dark:text-slate-300 max-w-3xl font-light leading-relaxed mb-6">
+          The Smart LPG Safety System received top recognition at the <strong class="text-slate-900 dark:text-white font-semibold">MSME Idea Hackathon 5.0</strong> for hardware safety innovation.
+        </p>
+        <a href="media.html" class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.25em] text-slate-900 dark:text-white border-b border-slate-900 dark:border-white pb-1 hover:opacity-80 transition-opacity">
+          View Media & Press Coverage →
+        </a>
       </section>
 
       <!-- ROADMAP -->
