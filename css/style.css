@@ -183,7 +183,15 @@ html.dark .group:hover p {
   background-color: var(--bg);
   color: var(--primary);
   cursor: pointer;
+  z-index: 250;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-toggle-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  pointer-events: none;
 }
 
 .theme-toggle-btn:hover {
@@ -203,21 +211,21 @@ html.dark .theme-toggle-btn:hover {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Scroll Progress Bar (Greyish Sidebar Matching Line) */
+/* Scroll Progress Bar (Exact Sidebar Kinetic Beam Match) */
 #scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #0f172a, #475569, #94a3b8);
+  height: 2.5px;
+  background: #0f172a;
   width: 0%;
   z-index: 9999;
   transition: width 0.1s ease-out;
 }
 
 html.dark #scroll-progress {
-  background: linear-gradient(90deg, #ffffff, #cbd5e1, #64748b);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  background: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
 }
 
 /* Rail Text / Sidebar Logic */
