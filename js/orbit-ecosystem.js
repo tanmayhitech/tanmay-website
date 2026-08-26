@@ -124,6 +124,19 @@ function initSolarSystem() {
 
     <div class="solar-wrapper relative w-full max-w-5xl aspect-[4/3] sm:aspect-[4/3] md:aspect-[16/10] min-h-[320px] sm:min-h-[480px] mx-auto flex items-center justify-center overflow-visible py-4 select-none">
       
+      <!-- Minimal Right-Side Orbit Control Pill -->
+      <div id="orbit-controls" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-1.5 p-1 sm:p-1.5 rounded-full bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-xl border border-slate-700/60 dark:border-slate-800/60 shadow-xl text-white">
+        <button id="orbit-ctrl-pause" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-900 text-slate-300 hover:text-white transition-colors cursor-pointer" title="Pause / Resume Orbit" aria-label="Pause / Resume Orbit">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button id="orbit-ctrl-speed-1" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-900 text-[9px] sm:text-[10px] font-mono font-bold transition-colors cursor-pointer text-emerald-400 border border-emerald-500/40" title="Normal Speed (1x)" aria-label="Normal Speed">
+          1x
+        </button>
+        <button id="orbit-ctrl-speed-2" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-900 text-[9px] sm:text-[10px] font-mono font-bold transition-colors cursor-pointer text-slate-400" title="Turbo Speed (2x)" aria-label="Turbo Speed">
+          2x
+        </button>
+      </div>
+
       <!-- Starry Dust Ambient Effect -->
       <div class="solar-stars absolute inset-0 opacity-30 pointer-events-none"></div>
 
@@ -301,6 +314,89 @@ function initSolarSystem() {
     };
 
     fusionCore.addEventListener('click', triggerCoreAlignment);
+  }
+
+  // Minimal Right-Side Orbit Control Button Handlers
+  const ctrlPause = document.getElementById('orbit-ctrl-pause');
+  const ctrlSpeed1 = document.getElementById('orbit-ctrl-speed-1');
+  const ctrlSpeed2 = document.getElementById('orbit-ctrl-speed-2');
+
+  if (ctrlPause) {
+    ctrlPause.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isPaused = !isPaused;
+      ctrlPause.innerHTML = isPaused
+        ? `<svg class="w-3.5 h-3.5 fill-current text-emerald-400" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`
+        : `<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+      if (window.soundEngine) window.soundEngine.playChime(400, 800, 0.1);
+    });
+  }
+
+  if (ctrlSpeed1) {
+    ctrlSpeed1.addEventListener('click', (e) => {
+      e.stopPropagation();
+      speedMultiplier = 1;
+      ctrlSpeed1.classList.add('text-emerald-400', 'border', 'border-emerald-500/40');
+      ctrlSpeed1.classList.remove('text-slate-400');
+      ctrlSpeed2.classList.remove('text-emerald-400', 'border', 'border-emerald-500/40');
+      ctrlSpeed2.classList.add('text-slate-400');
+      if (window.soundEngine) window.soundEngine.playChime(500, 900, 0.1);
+    });
+  }
+
+  if (ctrlSpeed2) {
+    ctrlSpeed2.addEventListener('click', (e) => {
+      e.stopPropagation();
+      speedMultiplier = 2.5;
+      ctrlSpeed2.classList.add('text-emerald-400', 'border', 'border-emerald-500/40');
+      ctrlSpeed2.classList.remove('text-slate-400');
+      ctrlSpeed1.classList.remove('text-emerald-400', 'border', 'border-emerald-500/40');
+      ctrlSpeed1.classList.add('text-slate-400');
+      if (window.soundEngine) window.soundEngine.playChime(700, 1200, 0.1);
+    });
+  }
+
+  // Interactive Drag / Touch Swipe Gesture Control to Manually Rotate Planets
+  const solarWrapper = container.querySelector('.solar-wrapper');
+  if (solarWrapper) {
+    let isDragging = false;
+    let startX = 0;
+
+    solarWrapper.addEventListener('mousedown', (e) => {
+      if (e.target.closest('button') || e.target.closest('#solar-detail-card')) return;
+      isDragging = true;
+      startX = e.clientX;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - startX;
+      startX = e.clientX;
+      for (let i = 0; i < planetAngles.length; i++) {
+        planetAngles[i] += deltaX * 0.008;
+      }
+    }, { passive: true });
+
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    solarWrapper.addEventListener('touchstart', (e) => {
+      if (e.target.closest('button') || e.target.closest('#solar-detail-card')) return;
+      if (e.touches.length === 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+      }
+    }, { passive: true });
+
+    solarWrapper.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const deltaX = e.touches[0].clientX - startX;
+      startX = e.touches[0].clientX;
+      for (let i = 0; i < planetAngles.length; i++) {
+        planetAngles[i] += deltaX * 0.01;
+      }
+    }, { passive: true });
+
+    solarWrapper.addEventListener('touchend', () => { isDragging = false; });
   }
 
   // Fixed Discrete 6-Level Orbit Rings Engine & Speed Mapping
